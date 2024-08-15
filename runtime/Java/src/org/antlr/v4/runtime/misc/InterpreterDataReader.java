@@ -17,6 +17,9 @@ import java.util.List;
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.io.IOException;
 
 // A class to read plain text interpreter data produced by ANTLR.
 public class InterpreterDataReader {
@@ -55,7 +58,7 @@ public class InterpreterDataReader {
 	public static InterpreterData parseFile(String fileName) {
 		InterpreterData result = new InterpreterData();
 		result.ruleNames = new ArrayList<String>();
-
+		// use Files.lines(Paths.get(fileName)), because Files.lines is recommended for large files.
 		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 		    String line;
 		  	List<String> literalNames = new ArrayList<String>();
